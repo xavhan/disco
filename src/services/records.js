@@ -3,7 +3,7 @@ import Discojs from 'discojs'
 export class RecordsService {
   constructor() {
     this.client = new Discojs({
-      userToken: process.env.USER_TOKEN,
+      userToken: 'JkvQWzpixIZDreLxgbByXauBopoHzDxhJLBdzASo',
     })
   }
 
