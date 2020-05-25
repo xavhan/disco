@@ -25,7 +25,7 @@ export class RecordsList extends React.Component {
 
   render() {
     return (this.state.isFetching
-      ? <div>Loading data</div>
+      ? <div className="text-center">Loading records...</div>
       : <div className="flex flex-wrap max-w-5xl mx-auto">
         {this.state.records.map(record =>
           <div className="block w-full lg:w-1/2 text-center max-w-md mx-auto" key={record.id}>
