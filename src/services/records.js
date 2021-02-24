@@ -1,6 +1,5 @@
 import { Discojs } from 'discojs'
 
-console.log(process.env)
 export class RecordsService {
   constructor() {
     this.client = new Discojs({
