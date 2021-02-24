@@ -1,9 +1,10 @@
 import { Discojs } from 'discojs'
 
+console.log(process.env)
 export class RecordsService {
   constructor() {
     this.client = new Discojs({
-      userToken: 'JkvQWzpixIZDreLxgbByXauBopoHzDxhJLBdzASo',
+      userToken: process.env.REACT_APP_DISCOGS_TOKEN,
     })
   }
 
