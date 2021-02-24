@@ -10,7 +10,7 @@ export class RecordsService {
   getMyLatestRecords(params = {}) {
     const DEFAULTS = { page: 1 }
     const options = { ...DEFAULTS, ...params  };
-    return this.client.listItemsInFolderForUser('xavhan', 0, { by: 'added', order: 'desc' }, { page: options.page })
+    return this.client.listItemsInFolder(0, { by: 'added', order: 'desc' }, { page: options.page })
       .then(data => data.releases)
   }
 
