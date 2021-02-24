@@ -8,7 +8,8 @@ export class RecordsList extends React.Component {
     super(props);
     this.state = {
       isFetching: false,
-      records: []
+      records: [],
+      page: 1
     }
   }
 
@@ -18,15 +19,31 @@ export class RecordsList extends React.Component {
 
   fetchRecords() { 
     this.setState({ isFetching: true })
-    return client.getMyLatestRecords().then(records =>
+    return client.getMyLatestRecords({ page: this.state.page }).then(records =>
       this.setState({ records: records, isFetching: false })
     )
   }
 
+  goToPreviousPage() {
+    this.setState({ page: this.state.page - 1 }, () => this.fetchRecords())
+  }
+
+  goToNextPage() {
+    this.setState({ page: this.state.page + 1 }, () => this.fetchRecords())
+  }
+
   render() {
-    return (this.state.isFetching
-      ? <div className="text-center">Loading records...</div>
-      : <div className="flex flex-wrap max-w-5xl mx-auto">
+    return <div>
+      <div className="block w-full text-center">
+        <button className="font-bold py-2 px-4" disabled={this.state.isFetching || this.state.page === 1} 
+          onClick={() => this.goToPreviousPage()}>prev</button>
+        <button className="font-bold py-2 px-4" disabled={this.state.isFetching} 
+          onClick={() => this.goToNextPage()}>next</button>
+      </div>
+     
+      {this.state.isFetching
+        ? <div className="text-center">Loading records...</div>
+        : <div className="flex flex-wrap max-w-5xl mx-auto">
         {this.state.records.map(record =>
           <div className="block w-full lg:w-1/2 text-center max-w-md mx-auto" key={record.id}>
             <RecordCard id={record.id}
@@ -37,7 +54,10 @@ export class RecordsList extends React.Component {
               year={record.basic_information.year}
             />
           </div>)}
-      </div>
-    )
+        </div>
+      }
+    </div>
+    
+    
   }
 }
