@@ -1,10 +1,15 @@
 import React from 'react'
-import { RecordsService } from './services/records';
+import { MyRecord, RecordsService } from './services/records';
 import { RecordCard } from './display/RecordCard';
 const client = new RecordsService();
 
-export class RecordsList extends React.Component {
-  constructor(props) {
+type State = {
+  isFetching: boolean,
+  records: MyRecord[],
+  page: number
+}
+export class RecordsList extends React.Component<{}, State> {
+  constructor(props: {}) {
     super(props);
     this.state = {
       isFetching: false,

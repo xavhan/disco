@@ -1,6 +1,6 @@
-import React from 'react';
-import {RecordsList} from './RecordsList';
-import './tailwind.css';
+import React from "react";
+import { RecordsList } from "./RecordsList";
+import "./tailwind.css";
 
 function App() {
   return (

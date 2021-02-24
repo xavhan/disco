@@ -1,8 +1,8 @@
 import React from 'react';
-import { RecordsService } from './../services/records'
+import { MyRecord, RecordsService } from '../services/records'
 const recordService = new RecordsService()
 
-const openDiscogs = id => recordService.getRecord(id)
+const openDiscogs = (id: number) => recordService.getRecord(id)
   .then(record => window.open(record.uri))
 
 export const RecordCard = ({
@@ -12,7 +12,7 @@ export const RecordCard = ({
   label,
   year,
   id,
-}) => (
+}: MyRecord) => (
   <div className="m-4 rounded overflow-hidden shadow-lg cursor-pointer hover:shadow-xl" onClick={() => openDiscogs(id)}>
     <img className="w-full" src={cover} alt={title} />
     <div className="px-6 py-4">
