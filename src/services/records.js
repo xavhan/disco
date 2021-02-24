@@ -1,4 +1,4 @@
-import Discojs from 'discojs'
+import { Discojs } from 'discojs'
 
 export class RecordsService {
   constructor() {
@@ -7,8 +7,10 @@ export class RecordsService {
     })
   }
 
-  getMyLatestRecords() {
-    return this.client.getItemsInFolderForUser('xavhan', 0, {}, { by: 'added', order: 'desc' })
+  getMyLatestRecords(params = {}) {
+    const DEFAULTS = { page: 1 }
+    const options = { ...DEFAULTS, ...params  };
+    return this.client.listItemsInFolderForUser('xavhan', 0, { by: 'added', order: 'desc' }, { page: options.page })
       .then(data => data.releases)
   }
 
