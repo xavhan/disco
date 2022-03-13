@@ -13,7 +13,7 @@ export class RecordsList extends React.Component<{}, State> {
     super(props);
     this.state = {
       isFetching: false,
-      records: [],
+      records: JSON.parse(localStorage.getItem('records')|| '[]'),
       page: 1
     }
   }
@@ -24,17 +24,20 @@ export class RecordsList extends React.Component<{}, State> {
 
   fetchRecords() { 
     this.setState({ isFetching: true })
-    return client.getMyLatestRecords({ page: this.state.page }).then(records =>
+    return client.getMyLatestRecords({ page: this.state.page }).then(records => {
       this.setState({ records: records, isFetching: false })
-    )
+      if(this.state.page === 1) {
+        localStorage.setItem('records', JSON.stringify(records));
+      }
+    })
   }
 
   goToPreviousPage() {
-    this.setState({ page: this.state.page - 1 }, () => this.fetchRecords())
+    this.setState({ page: this.state.page - 1, records: [] }, () => this.fetchRecords())
   }
 
   goToNextPage() {
-    this.setState({ page: this.state.page + 1 }, () => this.fetchRecords())
+    this.setState({ page: this.state.page + 1, records: [] }, () => this.fetchRecords())
   }
 
   render() {
@@ -46,7 +49,7 @@ export class RecordsList extends React.Component<{}, State> {
           onClick={() => this.goToNextPage()}>next</button>
       </div>
      
-      {this.state.isFetching
+      {this.state.isFetching && !this.state.records.length
         ? <div className="text-center">Loading records...</div>
         : <div className="flex flex-wrap max-w-5xl mx-auto">
         {this.state.records.map(record =>
