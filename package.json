@@ -5,10 +5,10 @@
   "dependencies": {
     "discojs": "^2.0.0",
     "npm-run-all": "^4.1.5",
-    "postcss-cli": "^9.1.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "5.0.0"
+    "postcss-cli": "^10.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -32,10 +32,10 @@
     ]
   },
   "devDependencies": {
-    "@types/react": "^17.0.40",
-    "autoprefixer": "^10.4.2",
-    "postcss": "^8.4.8",
-    "tailwindcss": "^3.0.23",
-    "typescript": "^4.6.2"
+    "@types/react": "^18.0.20",
+    "autoprefixer": "^10.4.10",
+    "postcss": "^8.4.16",
+    "tailwindcss": "^3.1.8",
+    "typescript": "^4.8.3"
   }
 }
