@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "discojs": "^2.2.0",
+    "discojs": "^2.3.1",
     "encoding": "^0.1.13",
     "next": "13.5.6",
     "react": "^18",
